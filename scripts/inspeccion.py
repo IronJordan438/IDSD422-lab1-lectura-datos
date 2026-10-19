@@ -20,4 +20,15 @@ print("Sucursal con mayor venta", ventas.loc[ventas["ventas"].idxmax(), "sucursa
 
 print("Sucursal con menor venta", ventas.loc[ventas["ventas"].idxmin(), "sucursal"])
 
-ventas_per_region = ventas.groupby("region").sum("ventas")
+ventas_per_region = ventas.groupby("region")["ventas"].sum()
+print("\n- Ventas totales por región:")
+print(ventas_per_region)
+
+region_max = ventas_per_region.idxmax()
+print(f"\n• Región con mayor venta total: {region_max}")
+
+venta_promedio = ventas["ventas"].mean()
+print(f"• Venta promedio por sucursal: {venta_promedio:.2f}")
+
+ticket_promedio_global = ventas["ventas"].sum() / ventas["clientes"].sum()
+print(f"• Ticket promedio global: {ticket_promedio_global:.2f}")
